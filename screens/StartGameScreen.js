@@ -1,8 +1,38 @@
-import { StyleSheet, TextInput, View } from "react-native";
+import { useState } from "react";
+import { Alert, StyleSheet, TextInput, View } from "react-native";
 
 import PrimaryButton from "../components/PrimaryButton";
 
-function StartGameScreen() {
+function StartGameScreen({ onPickNumber }) {
+  const [enteredNumber, setEnteredNumber] = useState("");
+
+  function numberInputHandler(enteredText) {
+    setEnteredNumber(enteredText);
+  }
+
+  function confirmInputHandler() {
+    const chosenNumber = parseInt(enteredNumber);
+    console.log("Chosen Number: " + chosenNumber);
+
+    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
+      // show alert
+      Alert.alert(
+        "Invalid Number!",
+        "Number has to be a number between 1 and 99.",
+        [{ text: "Okay", style: "destructive", onPress: resetInputHandler }]
+      );
+      resetInputHandler();
+      return;
+    }
+
+    onPickNumber(chosenNumber);
+    resetInputHandler();
+  }
+
+  function resetInputHandler() {
+    setEnteredNumber("");
+  }
+
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -11,13 +41,21 @@ function StartGameScreen() {
         keyboardType="number-pad"
         autoCapitalize="none"
         autoCorrect={false}
+        onChangeText={numberInputHandler}
+        value={enteredNumber}
       />
       <View style={styles.buttonsContainer}>
         <View style={styles.buttonContainer}>
-          <PrimaryButton title="Reset" onPress={() => {}} />
+          <PrimaryButton
+            title={"Reset"}
+            onPress={resetInputHandler}
+          ></PrimaryButton>
         </View>
         <View style={styles.buttonContainer}>
-          <PrimaryButton title="Confirm" onPress={() => {}} />
+          <PrimaryButton
+            title={"Confirm"}
+            onPress={confirmInputHandler}
+          ></PrimaryButton>
         </View>
       </View>
     </View>
@@ -56,5 +94,5 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-  }
+  },
 });
