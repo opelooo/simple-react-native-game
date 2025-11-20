@@ -9,6 +9,7 @@ import Colors from "./constants/colors";
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
+  const [gameIsOver, setGameIsOver] = useState();
 
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber);

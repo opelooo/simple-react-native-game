@@ -28,22 +28,31 @@ function GameScreen(userNumber) {
 
   // direction >> lower or greater
   function nextGuessHandler(direction) {
-    if ((direction === 'lower' && currentGuess < userNumber) || (direction === 'greater' && currentGuess > userNumber)) {
-      Alert.alert("Don't lie!", "You know that this is wrong...", { text: 'Sorry!', styles: 'cancel'})
+    if (
+      (direction === "lower" && currentGuess < userNumber) ||
+      (direction === "greater" && currentGuess > userNumber)
+    ) {
+      Alert.alert("Don't lie!", "You know that this is wrong...", [
+        { text: "Sorry!", styles: "cancel" },
+      ]);
       return;
     }
+
     if (direction === "lower") {
       maxBoundary = currentGuess;
-    } 
+    }
+
     if (direction === "greater") {
       minBoundary = currentGuess + 1;
     }
+
     const newRandomNumber = generateRandomNumberBetween(
       minBoundary,
       maxBoundary,
       currentGuess
     );
-    setCurrentGuess(newRandomNumber)
+    
+    setCurrentGuess(newRandomNumber);
   }
 
   return (
