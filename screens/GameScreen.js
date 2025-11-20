@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Alert } from "react-native";
 
 import Colors from "../constants/colors";
 import Title from "../components/ui/Title";
@@ -28,6 +28,10 @@ function GameScreen(userNumber) {
 
   // direction >> lower or greater
   function nextGuessHandler(direction) {
+    if ((direction === 'lower' && currentGuess < userNumber) || (direction === 'greater' && currentGuess > userNumber)) {
+      Alert.alert("Don't lie!", "You know that this is wrong...", { text: 'Sorry!', styles: 'cancel'})
+      return;
+    }
     if (direction === "lower") {
       maxBoundary = currentGuess;
     } 
