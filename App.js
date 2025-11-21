@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 // SafeAreaView is deprecated, use react-native-safe-area-context instead
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
+// loading screen package
 import * as SplashScreen from "expo-splash-screen";
 
 import StartGameScreen from "./screens/StartGameScreen";
@@ -11,6 +12,7 @@ import GameScreen from "./screens/GameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
 import Colors from "./constants/colors";
 
+// prevent auto hide splash screen
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
@@ -24,13 +26,15 @@ export default function App() {
   });
 
   const onLayoutRootView = useCallback(async () => {
+    // sembunyikan splash setelah font siap
     if (fontsLoaded) {
-      await SplashScreen.hideAsync(); // ✅ sembunyikan splash setelah font siap
+      await SplashScreen.hideAsync();
     }
   }, [fontsLoaded]);
 
+  // jika font belum siap, biarkan splash tampil
   if (!fontsLoaded) {
-    return null; // biarkan splash tampil
+    return null;
   }
 
   function pickedNumberHandler(pickedNumber) {
