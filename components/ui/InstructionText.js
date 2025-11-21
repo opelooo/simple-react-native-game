@@ -2,6 +2,8 @@ import { Text, StyleSheet } from "react-native";
 
 import Colors from "../../constants/colors";
 
+// cascading styles using props named style
+// style is an object with properties that will be applied to the text
 function InstructionText({ children, style }) {
     return <Text style={[styles.instructionText, style]}>{children}</Text>;
 }

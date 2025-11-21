@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { StyleSheet, ImageBackground } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+// SafeAreaView is deprecated, use react-native-safe-area-context instead
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
