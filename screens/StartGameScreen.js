@@ -12,6 +12,7 @@ import {
 } from "react-native";
 
 import PrimaryButton from "../components/ui/PrimaryButton";
+// jangan gunakan import dari Title.android/Title.ios secara langsung, pakai Title saja
 import Title from "../components/ui/Title";
 import Colors from "../constants/colors";
 import Card from "../components/ui/Card";
