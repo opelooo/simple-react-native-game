@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "clean": "rm -rf node_modules && rm -rf dist && rm -rf build && rm -rf .expo && rm -rf .expo-shared && rm -rf .expo-updates && rm -rf .expo-cache && rm -rf .expo-shared && rm -rf .expo-updates && rm -rf .expo-cache"
+    "clean": "rmdir /s /q node_modules dist build .expo .expo-shared .expo-updates .expo-cache"
   },
   "dependencies": {
     "expo": "~54.0.24",
